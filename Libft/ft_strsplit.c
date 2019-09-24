@@ -6,7 +6,7 @@
 /*   By: wscallop <wscallop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/11 21:09:52 by wscallop          #+#    #+#             */
-/*   Updated: 2019/09/18 21:46:40 by wscallop         ###   ########.fr       */
+/*   Updated: 2019/09/24 21:50:32 by wscallop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ static void		ft_freedom(char **mass, size_t index_0)
 		ft_memdel((void *)mass[index]);
 		index++;
 	}
+	free(mass);
 }
 
 char			**ft_strsplit(char const *s, char c)

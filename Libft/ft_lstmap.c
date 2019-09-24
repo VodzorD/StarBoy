@@ -1,43 +1,47 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_lstnew.c                                        :+:      :+:    :+:   */
+/*   ft_lstmap.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: wscallop <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/19 20:16:21 by wscallop          #+#    #+#             */
-/*   Updated: 2019/09/24 18:07:00 by wscallop         ###   ########.fr       */
+/*   Created: 2019/09/24 18:14:37 by wscallop          #+#    #+#             */
+/*   Updated: 2019/09/24 21:24:03 by wscallop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 #include <stdlib.h>
 
-t_list	*ft_lstnew(void const *content, size_t content_size)
+static void		del(void *content, size_t content_size)
 {
-	t_list	*list;
+	ft_memdel(content);
+	content_size = 0;
+}
 
-	list = (t_list *)malloc(sizeof(t_list));
-	if (list)
+t_list			*ft_lstmap(t_list *lst, t_list *(*f)(t_list *elem))
+{
+	t_list	*ls;
+	t_list	*l;
+	t_list	*tmp;
+
+	ls = ft_lstnew(f(lst)->content, f(lst)->content_size);
+	if (lst && f && ls)
 	{
-		if (content != NULL)
+		l = ls;
+		while (lst->next)
 		{
-			if ((list->content = malloc(content_size)))
-				ft_memcpy(list->content, content, content_size);
-			else
+			tmp = f(lst->next);
+			ls->next = ft_lstnew(tmp->content, tmp->content_size);
+			if (!ls->next)
 			{
-				free(list);
+				ft_lstdel(&l, del);
 				return (NULL);
 			}
-			list->content_size = content_size;
+			lst = lst->next;
+			ls = ls->next;
 		}
-		else
-		{
-			list->content = NULL;
-			list->content_size = 0;
-		}
-		list->next = NULL;
-		return (list);
+		return (l);
 	}
 	return (NULL);
 }

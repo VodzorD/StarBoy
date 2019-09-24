@@ -1,29 +1,28 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_memalloc.c                                      :+:      :+:    :+:   */
+/*   ft_lstiter.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wscallop <wscallop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wscallop <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/16 20:17:02 by wscallop          #+#    #+#             */
-/*   Updated: 2019/09/24 17:59:18 by wscallop         ###   ########.fr       */
+/*   Created: 2019/09/24 18:03:10 by wscallop          #+#    #+#             */
+/*   Updated: 2019/09/24 18:14:20 by wscallop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
-#include <stdlib.h>
 
-void	*ft_memalloc(size_t size)
+void	ft_lstiter(t_list *lst, void (*f)(t_list *elem))
 {
-	unsigned char	*str;
-	size_t			index;
+	t_list	*ls;
 
-	index = 0;
-	str = (unsigned char *)malloc(sizeof(unsigned char) * size + 1);
-	if (str && size <= 9223372036854775807UL)
+	if (lst && f)
 	{
-		ft_bzero((void *)str, size);
-		return (str);
+		ls = lst;
+		while (ls)
+		{
+			f(ls);
+			ls = ls->next;
+		}
 	}
-	return (NULL);
 }
