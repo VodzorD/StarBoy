@@ -6,11 +6,23 @@
 /*   By: wscallop <wscallop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 17:46:54 by wscallop          #+#    #+#             */
-/*   Updated: 2019/09/18 21:43:52 by wscallop         ###   ########.fr       */
+/*   Updated: 2019/09/24 16:28:00 by wscallop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-int		ft_atoi(char *str)
+static int		check_res(unsigned long long res, int neg)
+{
+	if (res > 9223372036854775807UL)
+	{
+		if (neg == -1)
+			res = 0;
+		else
+			res = -1;
+	}
+	return (res);
+}
+
+int				ft_atoi(char *str)
 {
 	int					f_sign;
 	unsigned long long	num;
@@ -34,7 +46,6 @@ int		ft_atoi(char *str)
 	}
 	if (num == 0)
 		return (0);
-	if (f_sign == -1)
-		return (num * -1);
-	return (num);
+	num = check_res(num, f_sign);
+	return (num * f_sign);
 }

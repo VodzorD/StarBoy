@@ -6,20 +6,17 @@
 /*   By: wscallop <wscallop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/10 19:40:12 by wscallop          #+#    #+#             */
-/*   Updated: 2019/09/18 21:46:40 by wscallop         ###   ########.fr       */
+/*   Updated: 2019/09/24 16:01:18 by wscallop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <unistd.h>
 
 void	ft_putstr_fd(char const *s, int fd)
 {
-	size_t	index;
-
-	index = 0;
-	while (s[index] != '\0')
+	if (s)
 	{
-		ft_putchar_fd(s[index], fd);
-		index++;
+		write(fd, &*s, ft_strlen(s));
 	}
 }

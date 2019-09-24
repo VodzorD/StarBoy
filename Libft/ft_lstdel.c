@@ -1,22 +1,32 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_putendl_fd.c                                    :+:      :+:    :+:   */
+/*   ft_lstdel.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: wscallop <wscallop@student.42.fr>          +#+  +:+       +#+        */
+/*   By: wscallop <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2019/09/10 19:43:29 by wscallop          #+#    #+#             */
-/*   Updated: 2019/09/24 16:02:02 by wscallop         ###   ########.fr       */
+/*   Created: 2019/09/24 14:14:34 by wscallop          #+#    #+#             */
+/*   Updated: 2019/09/24 15:47:28 by wscallop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
+#include <stdlib.h>
 
-void	ft_putendl_fd(char const *s, int fd)
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t))
 {
-	if (s)
+	t_list	*lst;
+	t_list	*tmp;
+
+	lst = *alst;
+	if (alst && *alst && del)
 	{
-		ft_putstr_fd(s, fd);
-		ft_putchar_fd('\n', fd);
+		while (lst)
+		{
+			tmp = lst->next;
+			ft_lstdelone(&lst, del);
+			lst = tmp;
+		}
+		*alst = NULL;
 	}
 }

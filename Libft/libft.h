@@ -6,7 +6,7 @@
 /*   By: wscallop <wscallop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/07 16:36:09 by wscallop          #+#    #+#             */
-/*   Updated: 2019/09/20 12:13:00 by wscallop         ###   ########.fr       */
+/*   Updated: 2019/09/24 14:15:52 by wscallop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -75,5 +75,6 @@ void	*ft_memalloc(size_t size);
 char	**ft_strsplit(char const *s, char c);
 t_list	*ft_lstnew(void const *content, size_t content_size);
 void	ft_lstdelone(t_list **alst, void (*del)(void *, size_t));
+void	ft_lstdel(t_list **alst, void (*del)(void *, size_t));
 
 #endif
