@@ -6,7 +6,7 @@
 /*   By: wscallop <wscallop@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/16 17:25:17 by wscallop          #+#    #+#             */
-/*   Updated: 2019/09/24 21:36:04 by wscallop         ###   ########.fr       */
+/*   Updated: 2019/10/01 20:15:49 by wscallop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,15 +16,15 @@
 char	*ft_strsub(char const *s, unsigned int start, size_t len)
 {
 	char			*str;
-	unsigned int	index;
+	size_t			index;
 
 	index = 0;
-	if (s == 0 || ft_strlen(s) < (size_t)start + (size_t)len)
-		return (0);
+	if (!s || len + 1 < len)
+		return (NULL);
 	str = (char *)malloc(sizeof(char) * len + 1);
 	if (str)
 	{
-		while (index < len)
+		while (index < len && s[start] != '\0')
 		{
 			str[index] = s[start];
 			start++;
