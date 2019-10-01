@@ -6,7 +6,7 @@
 /*   By: wscallop <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2019/09/06 14:35:20 by wscallop          #+#    #+#             */
-/*   Updated: 2019/10/01 18:43:57 by wscallop         ###   ########.fr       */
+/*   Updated: 2019/10/01 20:38:46 by wscallop         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,8 @@
 
 char	*ft_strdup(const char *str)
 {
-	size_t		index;
-	char		*str_0;
+	int		index;
+	char	*str_0;
 
 	index = 0;
 	while (str[index] != '\0')
